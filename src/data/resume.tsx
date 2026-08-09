@@ -140,12 +140,12 @@ export const DATA = {
 
   navbar: [
     {
-      href: "/thiha",
+      href: "/",
       icon: House,
       label: "Home",
     },
     {
-      href: "/thiha/blog",
+      href: "/blog",
       icon: Library,
       label: "Blog",
     },
