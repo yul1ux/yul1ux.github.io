@@ -238,3 +238,4 @@ export const FlickeringGrid: React.FC<FlickeringGridProps> = ({
   )
 }
 
+export default FlickeringGrid;

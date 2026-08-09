@@ -1,6 +1,7 @@
-import type { ReactNode } from "react";
+import React from "react";
 import BlurFade from "@/components/magicui/blur-fade";
 import BlurFadeText from "@/components/magicui/blur-fade-text";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { DATA } from "@/data/resume";
 import Markdown from "react-markdown";
 import ContactSection from "@/components/section/contact-section";
@@ -12,13 +13,12 @@ import { ArrowUpRight } from "lucide-react";
 
 const BLUR_FADE_DELAY = 0.04;
 
-const sectionComponents: Record<string, ReactNode> = {
+const sectionComponents: Record<string, React.ReactNode> = {
   about: (
     <section id="about">
       <div className="flex min-h-0 flex-col gap-y-4">
         <BlurFade delay={BLUR_FADE_DELAY * 3}>
           <h2 className="text-xl font-bold">{DATA.sections.about.heading}</h2>
-
         </BlurFade>
         <BlurFade delay={BLUR_FADE_DELAY * 4}>
           <div className="prose max-w-full text-pretty font-sans leading-relaxed text-muted-foreground dark:prose-invert">
@@ -142,7 +142,7 @@ export default function HomePage() {
                 delay={BLUR_FADE_DELAY}
                 className="text-3xl font-semibold tracking-tighter sm:text-4xl lg:text-5xl"
                 yOffset={8}
-                text={`Hi, I'm ${DATA.name.split(" ")[0]}  ${DATA.name.split(" ")[1]}`}
+                text={`Hi, I'm ${DATA.name.split(" ")[0]}`}
               />
               <BlurFadeText
                 className="text-muted-foreground max-w-[600px] md:text-lg lg:text-xl"
@@ -150,12 +150,19 @@ export default function HomePage() {
                 text={DATA.description}
               />
             </div>
-            
+            <BlurFade delay={BLUR_FADE_DELAY} className="order-1 md:order-2">
+              <Avatar className="size-24 md:size-32 border rounded-full shadow-lg ring-4 ring-muted">
+                <AvatarImage alt={DATA.name} src={DATA.avatarUrl} />
+                <AvatarFallback>{DATA.initials}</AvatarFallback>
+              </Avatar>
+            </BlurFade>
           </div>
         </div>
       </section>
       {orderedSections.map((key) => (
-        <section key={key}>{sectionComponents[key]}</section>
+        <React.Fragment key={key}>
+          {sectionComponents[key]}
+        </React.Fragment>
       ))}
     </main>
   );

@@ -1,5 +1,4 @@
 ---
-export const prerender = true;
 import Layout from "@/layouts/Layout.astro";
 import BlogList from "@/components/BlogList";
 import { getCollection } from "astro:content";
@@ -30,7 +29,7 @@ const posts = paginatedPosts.map((post) => ({
 
 <Layout title="Blog" description="Thoughts on software development, life, and more.">
   <BlogList
-    client:load
+    client:only="react"
     posts={posts}
     allPostsCount={sortedPosts.length}
     pagination={pagination}
