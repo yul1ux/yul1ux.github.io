@@ -23,7 +23,7 @@ export const DATA = {
   summary:
     "I am a NOC Engineer with experience supporting FTTH ISP infrastructure and troubleshooting network operations. I am transitioning into cloud engineering by building hands-on projects with AWS, Terraform, Linux, Docker, and automation tools. I enjoy designing secure, scalable infrastructure and applying my networking background to modern cloud environments.",
 
-  avatarUrl: "/thiha/pic.jpg",
+  avatarUrl: "/thiha/pic1.jpeg",
   ogImage: "/og_image.png",
 
   sections: {
@@ -166,7 +166,7 @@ export const DATA = {
 
       LinkedIn: {
         name: "LinkedIn",
-        url: "https://linkedin.com/in/YOUR_USERNAME",
+        url: "https://linkedin.com/in/",
         icon: Icons.linkedin,
         navbar: true,
       },
