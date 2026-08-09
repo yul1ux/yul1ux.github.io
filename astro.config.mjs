@@ -20,7 +20,7 @@ const prettyCodeOptions = {
 // https://astro.build/config
 export default defineConfig({
   site: 'https://yul1ux.github.io',
-  base: '/thiha',
+
 
 
   vite: {
