@@ -23,7 +23,7 @@ export const DATA = {
   summary:
     "I am a NOC Engineer with experience supporting FTTH ISP infrastructure and troubleshooting network operations. I am transitioning into cloud engineering by building hands-on projects with AWS, Terraform, Linux, Docker, and automation tools. I enjoy designing secure, scalable infrastructure and applying my networking background to modern cloud environments.",
 
-  avatarUrl: "/pic1.jpeg",
+  avatarUrl: "/avatar.jpeg",
   ogImage: "/og_image.png",
 
   sections: {
@@ -181,14 +181,14 @@ export const DATA = {
   },
     work: [
     {
-      company: "Maharnet-FTTH Internet Service Provider",
+      company: "Maharnet - FTTH ISP",
       href: "",
       badges: ["NOC Engineer"],
       location: "Myanmar",
 
       title: "Network Operations Center Engineer",
 
-      logoUrl: "/isp-logo.png",
+      logoUrl: "/mhn.png",
 
       start: "2025",
       end: undefined,
@@ -298,7 +298,7 @@ export const DATA = {
 
       links: [],
 
-      image: "/aws-three-tier.png",
+      image: "/aws-architecture.png",
 
       video: "",
     },
@@ -326,7 +326,7 @@ export const DATA = {
 
       links: [],
 
-      image: "/terraform-project.png",
+      image: "/terraform.png",
 
       video: "",
     },
@@ -355,7 +355,7 @@ export const DATA = {
 
       links: [],
 
-      image: "/isp-lab.png",
+      image: "/ftth-isp.png",
 
       video: "",
     },
@@ -382,7 +382,7 @@ export const DATA = {
 
       links: [],
 
-      image: "/bash-linux.png",
+      image: "/bash.png",
 
       video: "",
     },
