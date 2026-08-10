@@ -13,9 +13,9 @@ import { Kubernetes } from "@/components/ui/svgs/kubernetes";
 import { AWS } from "@/components/ui/svgs/aws";
 
 export const DATA = {
-  name: "Soe Thiha - Cloud Engineer",
+  name: "Soe Thiha | Cloud Engineer",
   initials: "ST",
-  url: "https://soethiha.dev",
+  url: "https://yul1ux.github.io",
 
   description:
     "Cloud engineer focused on AWS infrastructure, automation, Linux systems, and reliable network architecture.",
@@ -152,7 +152,7 @@ export const DATA = {
   ],
 
   contact: {
-    email: "your-email@example.com",
+    email: "soethiha5125@gmail.com",
 
     tel: "",
 
@@ -171,23 +171,9 @@ export const DATA = {
         navbar: true,
       },
 
-      X: {
-        name: "X",
-        url: "https://x.com/YOUR_USERNAME",
-        icon: Icons.x,
-        navbar: false,
-      },
-
-      Youtube: {
-        name: "Youtube",
-        url: "https://youtube.com/@YOUR_USERNAME",
-        icon: Icons.youtube,
-        navbar: false,
-      },
-
       email: {
         name: "Send Email",
-        url: "mailto:your-email@example.com",
+        url: "mailto:soethiha5125@gmail.com",
         icon: Icons.email,
         navbar: false,
       },
@@ -195,7 +181,7 @@ export const DATA = {
   },
     work: [
     {
-      company: "FTTH Internet Service Provider",
+      company: "Maharnet-FTTH Internet Service Provider",
       href: "",
       badges: ["NOC Engineer"],
       location: "Myanmar",
