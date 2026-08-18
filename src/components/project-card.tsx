@@ -1,139 +1,374 @@
-/* eslint-disable @next/next/no-img-element */
+import {
+  ArrowUpRight,
+  ExternalLink,
+} from "lucide-react";
 
-import { Badge } from "@/components/ui/badge";
-import { cn } from "@/lib/utils";
-import { ArrowUpRight } from "lucide-react";
-import { useState } from "react";
-import Markdown from "react-markdown";
-
-function ProjectImage({ src, alt }: { src: string; alt: string }) {
-  const [imageError, setImageError] = useState(false);
-
-  if (!src || imageError) {
-    return <div className="w-full h-48 bg-muted" />;
-  }
-
-  return (
-    <img
-      src={src}
-      alt={alt}
-      className="w-full h-48 object-cover"
-      onError={() => setImageError(true)}
-    />
-  );
+interface ProjectLink {
+  title: string;
+  href: string;
+  icon: React.ReactNode;
 }
 
-interface Props {
+interface ProjectCardProps {
+  index: number;
   title: string;
-  href?: string;
   description: string;
-  dates: string;
-  tags: readonly string[];
+  tags?: readonly string[];
   image?: string;
   video?: string;
-  links?: readonly {
-    icon: React.ReactNode;
-    type: string;
-    href: string;
-  }[];
-  className?: string;
+  href?: string;
+  links?: readonly ProjectLink[];
 }
 
 export function ProjectCard({
+  index,
   title,
-  href,
   description,
-  dates,
   tags,
   image,
   video,
+  href,
   links,
-  className,
-}: Props) {
+}: ProjectCardProps) {
   return (
-    <div
-      className={cn(
-        "flex flex-col h-full border border-border rounded-xl overflow-hidden hover:ring-2 cursor-pointer hover:ring-muted transition-all duration-200",
-        className
-      )}
+    <article
+      className="
+        group
+        relative
+        flex
+        h-full
+        min-h-[540px]
+        flex-col
+        overflow-hidden
+        rounded-2xl
+        border
+        border-border/60
+        bg-background
+        transition-all
+        duration-500
+        hover:-translate-y-1
+        hover:border-foreground/20
+        hover:shadow-[0_20px_60px_rgba(0,0,0,0.10)]
+      "
     >
-      <div className="relative shrink-0">
-        <a
-          href={href || "#"}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="block"
+      {/* ============================================================
+          IMAGE / PROJECTION
+      ============================================================ */}
+
+      <div
+        className="
+          relative
+          h-[300px]
+          w-full
+          shrink-0
+          overflow-hidden
+          border-b
+          border-border/50
+          bg-muted/[0.08]
+        "
+      >
+        {/* Glow */}
+
+        <div
+          aria-hidden
+          className="
+            pointer-events-none
+            absolute
+            left-1/2
+            top-1/2
+            z-0
+            size-[300px]
+            -translate-x-1/2
+            -translate-y-1/2
+            rounded-full
+            bg-blue-500/[0.06]
+            blur-[100px]
+            transition-all
+            duration-700
+            group-hover:size-[380px]
+            group-hover:bg-blue-500/[0.09]
+          "
+        />
+
+        {/* Projection ring */}
+
+        <div
+          aria-hidden
+          className="
+            pointer-events-none
+            absolute
+            left-1/2
+            top-1/2
+            z-0
+            size-[270px]
+            -translate-x-1/2
+            -translate-y-1/2
+            rounded-full
+            border
+            border-dashed
+            border-border/30
+            transition-all
+            duration-700
+            group-hover:rotate-6
+            group-hover:scale-105
+          "
+        />
+
+        {/* Inner projection */}
+
+        <div
+          aria-hidden
+          className="
+            pointer-events-none
+            absolute
+            left-1/2
+            top-1/2
+            z-0
+            size-[220px]
+            -translate-x-1/2
+            -translate-y-1/2
+            rounded-full
+            border
+            border-border/30
+            bg-gradient-to-br
+            from-muted/50
+            via-background/40
+            to-muted/10
+            transition-transform
+            duration-500
+            group-hover:scale-105
+          "
+        />
+
+        {/* ============================================================
+            IMAGE
+        ============================================================ */}
+
+        {image && (
+          <img
+            src={image}
+            alt={title}
+            loading="lazy"
+            className="
+              absolute
+              inset-0
+              z-10
+              h-full
+              w-full
+              object-contain
+              transition-transform
+              duration-500
+              ease-out
+              group-hover:scale-[1.025]
+            "
+          />
+        )}
+
+        {/* ============================================================
+            VIDEO
+        ============================================================ */}
+
+        {video && (
+          <video
+            src={video}
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="
+              absolute
+              inset-0
+              z-10
+              h-full
+              w-full
+              object-contain
+              transition-transform
+              duration-500
+              group-hover:scale-[1.025]
+            "
+          />
+        )}
+
+        {/* Project number */}
+
+        <div
+          className="
+            absolute
+            left-5
+            top-5
+            z-20
+            rounded-full
+            border
+            border-border/50
+            bg-background/75
+            px-3
+            py-1.5
+            font-mono
+            text-[11px]
+            font-medium
+            text-blue-500
+            backdrop-blur-md
+          "
         >
-          {video ? (
-            <video
-              src={video}
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="w-full h-48 object-cover"
-            />
-          ) : image ? (
-            <ProjectImage src={image} alt={title} />
-          ) : (
-            <div className="w-full h-48 bg-muted" />
-          )}
-        </a>
-        {links && links.length > 0 && (
-          <div className="absolute top-2 right-2 flex flex-wrap gap-2">
-            {links.map((link, idx) => (
+          {String(index + 1).padStart(2, "0")}
+        </div>
+
+        {/* Bottom shadow */}
+
+        <div
+          aria-hidden
+          className="
+            pointer-events-none
+            absolute
+            bottom-3
+            left-1/2
+            z-20
+            h-4
+            w-40
+            -translate-x-1/2
+            rounded-full
+            bg-foreground/10
+            blur-xl
+          "
+        />
+      </div>
+
+      {/* ============================================================
+          CONTENT
+      ============================================================ */}
+
+      <div
+        className="
+          relative
+          z-10
+          flex
+          flex-1
+          flex-col
+          p-6
+          sm:p-7
+        "
+      >
+        <h3
+          className="
+            text-xl
+            font-semibold
+            leading-tight
+            tracking-tight
+            sm:text-2xl
+          "
+        >
+          {title}
+        </h3>
+
+        <p
+          className="
+            mt-3
+            text-sm
+            leading-6
+            text-muted-foreground
+          "
+        >
+          {description}
+        </p>
+
+        {tags && tags.length > 0 && (
+          <div className="mt-auto flex flex-wrap gap-1.5 pt-6">
+            {tags.map((tag) => (
+              <span
+                key={tag}
+                className="
+                  rounded-full
+                  border
+                  border-border/60
+                  bg-muted/30
+                  px-2.5
+                  py-1
+                  text-[11px]
+                  font-medium
+                  text-muted-foreground
+                "
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+        )}
+
+        {(href || (links && links.length > 0)) && (
+          <div
+            className="
+              mt-5
+              flex
+              flex-wrap
+              items-center
+              gap-4
+              border-t
+              border-border/50
+              pt-4
+            "
+          >
+            {href && (
               <a
-                href={link.href}
-                key={idx}
+                href={href}
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={(e: React.MouseEvent) => e.stopPropagation()}
+                className="
+                  inline-flex
+                  items-center
+                  gap-1.5
+                  text-sm
+                  font-medium
+                  transition-colors
+                  hover:text-blue-500
+                "
               >
-                <Badge
-                  className="flex items-center gap-1.5 text-xs bg-black text-white hover:bg-black/90"
-                  variant="default"
-                >
-                  {link.icon}
-                  {link.type}
-                </Badge>
+                View project
+
+                <ArrowUpRight className="size-4" />
+              </a>
+            )}
+
+            {links?.map((link) => (
+              <a
+                key={link.title}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="
+                  inline-flex
+                  items-center
+                  gap-1.5
+                  text-sm
+                  text-muted-foreground
+                  hover:text-foreground
+                "
+              >
+                {link.icon}
+                <span>{link.title}</span>
+                <ExternalLink className="size-3.5" />
               </a>
             ))}
           </div>
         )}
       </div>
-      <div className="p-6 flex flex-col gap-3 flex-1">
-        <div className="flex items-start justify-between gap-2">
-          <div className="flex flex-col gap-1">
-            <h3 className="font-semibold">{title}</h3>
-            <time className="text-xs text-muted-foreground">{dates}</time>
-          </div>
-          <a
-            href={href || "#"}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-muted-foreground hover:text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm"
-            aria-label={`Open ${title}`}
-          >
-            <ArrowUpRight className="h-4 w-4" aria-hidden />
-          </a>
-        </div>
-        <div className="text-xs flex-1 prose max-w-full text-pretty font-sans leading-relaxed text-muted-foreground dark:prose-invert">
-          <Markdown>{description}</Markdown>
-        </div>
-        {tags && tags.length > 0 && (
-          <div className="flex flex-wrap gap-1 mt-auto">
-            {tags.map((tag) => (
-              <Badge
-                key={tag}
-                className="text-[11px] font-medium border border-border h-6 w-fit px-2"
-                variant="outline"
-              >
-                {tag}
-              </Badge>
-            ))}
-          </div>
-        )}
-      </div>
-    </div>
+
+      {/* Hover border */}
+
+      <div
+        aria-hidden
+        className="
+          pointer-events-none
+          absolute
+          inset-0
+          z-30
+          rounded-2xl
+          border
+          border-transparent
+          transition-colors
+          duration-500
+          group-hover:border-blue-500/15
+        "
+      />
+    </article>
   );
 }

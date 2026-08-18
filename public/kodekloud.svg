@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="KodeKloud">
+  <defs>
+    <linearGradient id="cloud" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#1677ff"/>
+      <stop offset="1" stop-color="#19c3a6"/>
+    </linearGradient>
+  </defs>
+  <path d="M28 88h69c12 0 20-8 20-18s-8-18-19-18c-3-17-17-28-34-28-16 0-29 10-34 25C16 49 7 57 7 69c0 11 9 19 21 19Z" fill="url(#cloud)"/>
+  <circle cx="70" cy="61" r="27" fill="#fff"/>
+  <path d="m59 53-8 8 8 8M81 53l8 8-8 8M75 49l-10 24" fill="none" stroke="#1478ed" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="64" y="112" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="700" fill="#182b49">KodeKloud</text>
+</svg>

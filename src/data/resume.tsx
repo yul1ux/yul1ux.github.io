@@ -1,4 +1,5 @@
 import { Icons } from "@/components/icons";
+
 import { House, Library } from "lucide-react";
 
 import { Linux } from "@/components/ui/svgs/linux";
@@ -13,8 +14,18 @@ import { Kubernetes } from "@/components/ui/svgs/kubernetes";
 import { AWS } from "@/components/ui/svgs/aws";
 
 export const DATA = {
-  name: "Soe Thiha | Cloud Engineer",
+  /* ============================================================
+     PROFILE
+  ============================================================ */
+
+  name: "Soe Thiha",
+
+  firstName: "Thiha",
+
+  role: "Cloud Engineer",
+
   initials: "ST",
+
   url: "https://yul1ux.github.io",
 
   description:
@@ -23,8 +34,13 @@ export const DATA = {
   summary:
     "I am a NOC Engineer with experience supporting FTTH ISP infrastructure and troubleshooting network operations. I am transitioning into cloud engineering by building hands-on projects with AWS, Terraform, Linux, Docker, and automation tools. I enjoy designing secure, scalable infrastructure and applying my networking background to modern cloud environments.",
 
-  avatarUrl: "/avatar.jpeg",
+  avatarUrl: "/gandalf.png",
+
   ogImage: "/og_image.png",
+
+  /* ============================================================
+     SECTIONS
+  ============================================================ */
 
   sections: {
     about: {
@@ -58,7 +74,7 @@ export const DATA = {
       label: "Projects",
       heading: "Cloud Infrastructure Projects",
       text:
-        "Hands-on projects focused on AWS architecture, infrastructure automation, networking, and Linux systems.",
+        "Hands-on projects focused on AWS architecture, infrastructure automation, networking, Linux systems, and DevOps practices.",
     },
 
     hackathons: {
@@ -67,7 +83,7 @@ export const DATA = {
       label: "Hackathons",
       heading: "Hackathons",
       text:
-        "I have built and contributed to multiple cloud, networking, and infrastructure projects during my learning journey.",
+        "Cloud, networking, and infrastructure projects built throughout my learning journey.",
     },
 
     photos: {
@@ -86,19 +102,60 @@ export const DATA = {
     },
   },
 
-  photos: [] as { src: string; alt: string }[],
-  hackathons: [] as {
-    title: string;
-    dates?: string;
-    location?: string;
-    description?: string;
-    image?: string;
-    links?: readonly {
-      title: string;
-      href: string;
-      icon: React.ReactNode;
-    }[];
-  }[],
+  /* ============================================================
+     NAVBAR
+  ============================================================ */
+
+  navbar: [
+    {
+      href: "/",
+      icon: House,
+      label: "Home",
+    },
+    {
+      href: "/blog",
+      icon: Library,
+      label: "Blog",
+    },
+  ],
+
+  /* ============================================================
+     CONTACT
+  ============================================================ */
+
+  contact: {
+    email: "soethiha5125@gmail.com",
+
+    tel: "",
+
+    social: {
+      GitHub: {
+        name: "GitHub",
+        url: "https://github.com/yul1ux",
+        icon: Icons.github,
+        navbar: true,
+      },
+
+      LinkedIn: {
+        name: "LinkedIn",
+        url: "https://linkedin.com/in/",
+        icon: Icons.linkedin,
+        navbar: true,
+      },
+
+      email: {
+        name: "Send Email",
+        url: "mailto:soethiha5125@gmail.com",
+        icon: Icons.email,
+        navbar: false,
+      },
+    },
+  },
+
+  /* ============================================================
+     SKILLS
+  ============================================================ */
+
   skills: [
     {
       name: "AWS",
@@ -138,58 +195,18 @@ export const DATA = {
     },
   ],
 
-  navbar: [
-    {
-      href: "/",
-      icon: House,
-      label: "Home",
-    },
-    {
-      href: "/blog",
-      icon: Library,
-      label: "Blog",
-    },
-  ],
+  /* ============================================================
+     WORK EXPERIENCE
+  ============================================================ */
 
-  contact: {
-    email: "soethiha5125@gmail.com",
-
-    tel: "",
-
-    social: {
-      GitHub: {
-        name: "GitHub",
-        url: "https://github.com/yul1ux",
-        icon: Icons.github,
-        navbar: true,
-      },
-
-      LinkedIn: {
-        name: "LinkedIn",
-        url: "https://linkedin.com/in/",
-        icon: Icons.linkedin,
-        navbar: true,
-      },
-
-      email: {
-        name: "Send Email",
-        url: "mailto:soethiha5125@gmail.com",
-        icon: Icons.email,
-        navbar: false,
-      },
-    },
-  },
-    work: [
+  work: [
     {
       company: "Maharnet - FTTH ISP",
       href: "",
       badges: ["NOC Engineer"],
       location: "Myanmar",
-
       title: "Network Operations Center Engineer",
-
       logoUrl: "/mhn.png",
-
       start: "2025",
       end: undefined,
 
@@ -200,15 +217,10 @@ export const DATA = {
     {
       company: "Personal Cloud Engineering Lab",
       href: "",
-
       badges: ["Self Learning"],
-
       location: "Remote",
-
       title: "Cloud Infrastructure Engineer",
-
       logoUrl: "/cloud-lab.png",
-
       start: "2025",
       end: undefined,
 
@@ -216,64 +228,66 @@ export const DATA = {
         "Build hands-on cloud infrastructure projects using AWS, Terraform, Linux, Docker, and CI/CD practices. Design production-style architectures with VPC networking, EC2, IAM, security groups, storage, monitoring, and infrastructure automation.",
     },
   ],
-    education: [
+
+  /* ============================================================
+     EDUCATION
+  ============================================================ */
+
+  education: [
     {
-      school: "AWS Cloud Engineering",
-      href: "https://aws.amazon.com",
-
-      degree:
-        "Cloud Infrastructure, AWS Services, Networking, Security, and Architecture",
-
-      logoUrl:
-        "https://www.google.com/s2/favicons?domain=aws.amazon.com&sz=128",
-
-      start: "2025",
-      end: "Present",
-    },
-
-    {
-      school: "Terraform Infrastructure as Code",
-      href: "https://developer.hashicorp.com/terraform",
-
-      degree:
-        "Infrastructure automation using Terraform, modules, providers, and AWS resources",
-
-      logoUrl:
-        "https://www.google.com/s2/favicons?domain=terraform.io&sz=128",
-
-      start: "2026",
-      end: "Present",
-    },
-
-    {
-      school: "Linux Administration",
+      school: "Government Technical Institute (GTI) - Pyin Oo Lwin",
       href: "",
-
-      degree:
-        "Linux system administration, Bash scripting, networking, and server management",
-
-      logoUrl:
-        "https://www.google.com/s2/favicons?domain=linux.org&sz=128",
-
-      start: "2025",
-      end: "Present",
-    },
-
-    {
-      school: "Computer Networking",
-      href: "",
-
-      degree:
-        "CCNA-level networking knowledge including routing, switching, TCP/IP, and ISP infrastructure",
-
-      logoUrl:
-        "https://www.google.com/s2/favicons?domain=cisco.com&sz=128",
-
-      start: "2024",
-      end: "Present",
+      degree: "Diploma in Mechanical Engineering",
+      logoUrl: "/institute.png",
+      start: "2018",
+      end: "2020",
     },
   ],
-    projects: [
+
+  /* ============================================================
+     CERTIFICATIONS
+  ============================================================ */
+
+  certifications: [
+    {
+      name: "AWS Certified Solutions Architect – Associate",
+      issuer: "Amazon Web Services",
+      shortName: "AWS SAA-C03",
+      issued: "Aug 2026",
+      credentialId: "4ead7e47b6eb4753a52fe3bf1d662a6e",
+      logoUrl: "/aws.svg",
+      href:
+        "https://www.credly.com/badges/6777f1bc-d772-4327-a63c-084869854c32",
+    },
+
+    {
+      name: "Red Hat Certified System Administrator",
+      issuer: "KodeKloud",
+      shortName: "RHCSA",
+      issued: "2025",
+      credentialId: "97939308-c542-470f-90fe-dcfe10ecec35",
+      logoUrl: "/kodekloud.svg",
+      href:
+        "https://learn.kodekloud.com/learn/certificate/97939308-c542-470f-90fe-dcfe10ecec35",
+    },
+
+    {
+      name: "CS50's Introduction to Computer Science",
+      issuer: "Harvard University",
+      shortName: "CS50",
+      issued: "2025",
+      credentialId: "a3b3914e-8dae-4efb-aeac-3a51f3c71f87",
+      logoUrl: "/cs50.svg",
+      href:
+        "https://certificates.cs50.io/a3b3914e-8dae-4efb-aeac-3a51f3c71f87.pdf?size=letter",
+    },
+  ],
+
+  /* ============================================================
+     PROJECTS
+  ============================================================ */
+
+  projects: [
     {
       title: "AWS Production-Style Three-Tier Architecture",
 
@@ -303,7 +317,6 @@ export const DATA = {
       video: "",
     },
 
-
     {
       title: "Terraform AWS Infrastructure Automation",
 
@@ -330,7 +343,6 @@ export const DATA = {
 
       video: "",
     },
-
 
     {
       title: "FTTH ISP Network Laboratory",
@@ -360,7 +372,6 @@ export const DATA = {
       video: "",
     },
 
-
     {
       title: "Linux Automation with Bash",
 
@@ -387,4 +398,30 @@ export const DATA = {
       video: "",
     },
   ],
+
+  /* ============================================================
+     PHOTOS
+  ============================================================ */
+
+  photos: [] as {
+    src: string;
+    alt: string;
+  }[],
+
+  /* ============================================================
+     HACKATHONS
+  ============================================================ */
+
+  hackathons: [] as {
+    title: string;
+    dates?: string;
+    location?: string;
+    description?: string;
+    image?: string;
+    links?: readonly {
+      title: string;
+      href: string;
+      icon: React.ReactNode;
+    }[];
+  }[],
 } as const;
