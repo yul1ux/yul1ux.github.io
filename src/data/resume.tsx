@@ -36,8 +36,6 @@ export const DATA = {
 
   avatarUrl: "/gandalf.png",
 
-  ogImage: "/og_image.png",
-
   /* ============================================================
      SECTIONS
   ============================================================ */
@@ -75,21 +73,6 @@ export const DATA = {
       heading: "Cloud Infrastructure Projects",
       text:
         "Hands-on projects focused on AWS architecture, infrastructure automation, networking, Linux systems, and DevOps practices.",
-    },
-
-    hackathons: {
-      order: 6,
-      enabled: false,
-      label: "Hackathons",
-      heading: "Hackathons",
-      text:
-        "Cloud, networking, and infrastructure projects built throughout my learning journey.",
-    },
-
-    photos: {
-      order: 7,
-      enabled: false,
-      heading: "Photos",
     },
 
     contact: {
@@ -214,7 +197,7 @@ export const DATA = {
         "Monitor and support ISP network operations including FTTH customer connectivity, network incidents, and infrastructure troubleshooting. Work with routing, switching, MikroTik devices, PPPoE authentication, and monitoring systems to maintain reliable internet services. Troubleshoot customer and core network issues while improving automation and cloud infrastructure skills.",
     },
 
-    {
+   /* {
       company: "Personal Cloud Engineering Lab",
       href: "",
       badges: ["Self Learning"],
@@ -226,7 +209,7 @@ export const DATA = {
 
       description:
         "Build hands-on cloud infrastructure projects using AWS, Terraform, Linux, Docker, and CI/CD practices. Design production-style architectures with VPC networking, EC2, IAM, security groups, storage, monitoring, and infrastructure automation.",
-    },
+    }, */
   ],
 
   /* ============================================================

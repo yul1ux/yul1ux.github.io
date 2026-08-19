@@ -8,8 +8,6 @@ import { DATA } from "@/data/resume";
 import Markdown from "react-markdown";
 
 import ContactSection from "@/components/section/contact-section";
-import HackathonsSection from "@/components/section/hackathons-section";
-import PhotosSection from "@/components/section/photos-section";
 import ProjectsSection from "@/components/section/projects-section";
 import WorkSection from "@/components/section/work-section";
 import EducationSection from "@/components/section/education-section";
@@ -42,14 +40,13 @@ const sectionComponents: Record<string, React.ReactNode> = {
       <div className="flex flex-col gap-y-5">
         <BlurFade delay={BLUR_FADE_DELAY * 3}>
           <SectionHeading
-            eyebrow="01"
             title={DATA.sections.about.heading}
           />
         </BlurFade>
 
         <BlurFade delay={BLUR_FADE_DELAY * 4}>
           <div className="max-w-3xl">
-            <div className="prose max-w-full text-pretty font-sans text-[15px] leading-7 text-muted-foreground dark:prose-invert">
+            <div className="prose max-w-full text-pretty font-sans text-[18px] leading-7 text-muted-foreground dark:prose-invert">
               <Markdown>{DATA.summary}</Markdown>
             </div>
           </div>
@@ -70,7 +67,6 @@ const sectionComponents: Record<string, React.ReactNode> = {
       <div className="flex flex-col gap-y-7">
         <BlurFade delay={BLUR_FADE_DELAY * 5}>
           <SectionHeading
-            eyebrow="02"
             title={DATA.sections.work.heading}
           />
         </BlurFade>
@@ -94,7 +90,6 @@ const sectionComponents: Record<string, React.ReactNode> = {
       <div className="flex flex-col gap-y-7">
         <BlurFade delay={BLUR_FADE_DELAY * 7}>
           <SectionHeading
-            eyebrow="03"
             title={DATA.sections.education.heading}
             description="Academic background and verified professional credentials."
           />
@@ -119,7 +114,6 @@ const sectionComponents: Record<string, React.ReactNode> = {
       <div className="flex flex-col gap-y-6">
         <BlurFade delay={BLUR_FADE_DELAY * 9}>
           <SectionHeading
-            eyebrow="04"
             title={DATA.sections.skills.heading}
           />
         </BlurFade>
@@ -177,36 +171,7 @@ const sectionComponents: Record<string, React.ReactNode> = {
     </section>
   ),
 
-  /* ==========================================================
-     HACKATHONS
-  ========================================================== */
-
-  hackathons: (
-    <section
-      id="hackathons"
-      className="scroll-mt-24"
-    >
-      <BlurFade delay={BLUR_FADE_DELAY * 12}>
-        <HackathonsSection />
-      </BlurFade>
-    </section>
-  ),
-
-  /* ==========================================================
-     PHOTOS
-  ========================================================== */
-
-  photos: (
-    <section
-      id="photos"
-      className="scroll-mt-24"
-    >
-      <BlurFade delay={BLUR_FADE_DELAY * 13}>
-        <PhotosSection />
-      </BlurFade>
-    </section>
-  ),
-
+  
   /* ==========================================================
      CONTACT
   ========================================================== */
@@ -228,22 +193,18 @@ const sectionComponents: Record<string, React.ReactNode> = {
 ============================================================ */
 
 function SectionHeading({
-  eyebrow,
   title,
   description,
 }: {
-  eyebrow: string;
   title: string;
   description?: string;
 }) {
   return (
     <div>
       <div className="mb-2 flex items-center gap-3">
-        <span className="font-mono text-xs text-blue-500">
-          {eyebrow}
-        </span>
 
-        <div className="h-px w-8 bg-border" />
+
+        <div className="h-px w-10 bg-border " />
       </div>
 
       <h2
@@ -374,9 +335,6 @@ export default function HomePage() {
 
         {/* ====================================================
             HERO CONTAINER
-
-            IMPORTANT:
-            Same width system as the rest of the page.
         ==================================================== */}
 
         <div
