@@ -24,27 +24,24 @@ export async function getStaticPaths() {
 }
 
 const { post, previousPost, nextPost } = Astro.props;
-const { title, publishedAt, summary, image } = post.data;
+const { title, publishedAt, updatedAt, author, summary, image } = post.data;
 const slug = post.id;
 
 const { Content } = await render(post);
 
+const articleImage = image ? new URL(image, DATA.url).href : undefined;
 const jsonLd = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "BlogPosting",
   headline: title,
   datePublished: publishedAt,
-  dateModified: publishedAt,
+  dateModified: updatedAt ?? publishedAt,
   description: summary,
-  image: image
-    ? image.startsWith("http")
-      ? image
-      : `${DATA.url}${image}`
-    : `${DATA.url}/og_image.png`,
+  ...(articleImage ? { image: articleImage } : {}),
   url: `${DATA.url}/blog/${slug}`,
   author: {
     "@type": "Person",
-    name: DATA.name,
+    name: author ?? DATA.name,
   },
 }).replace(/</g, "\\u003c");
 ---
@@ -54,8 +51,12 @@ const jsonLd = JSON.stringify({
   description={summary}
   image={image}
   canonicalURL={`${DATA.url}/blog/${slug}`}
+  ogType="article"
+  publishedAt={publishedAt}
+  updatedAt={updatedAt}
+  author={author ?? DATA.name}
 >
-  <section id="blog">
+  <section id="blog" class="mx-auto w-full max-w-5xl px-5 sm:px-8 lg:px-10">
     <script is:inline type="application/ld+json" set:html={jsonLd} />
     <div class="flex justify-start gap-4 items-center">
       <a
@@ -76,7 +77,8 @@ const jsonLd = JSON.stringify({
         {title}
       </h1>
       <p class="text-sm text-muted-foreground">
-        {formatDate(publishedAt)}
+        <time datetime={publishedAt}>{formatDate(publishedAt)}</time>
+        {author && <span> · By {author}</span>}
       </p>
     </div>
     <div class="my-6 flex w-full items-center">
@@ -87,7 +89,7 @@ const jsonLd = JSON.stringify({
       </div>
     </div>
     <article
-      class="prose max-w-full text-pretty font-sans leading-relaxed text-muted-foreground dark:prose-invert"
+      class="prose max-w-3xl text-pretty font-sans leading-relaxed text-muted-foreground dark:prose-invert"
     >
       <Content components={mdxComponents} />
     </article>
@@ -134,4 +136,58 @@ const jsonLd = JSON.stringify({
       </div>
     </nav>
   </section>
+
+  <script is:inline>
+    document.addEventListener("click", async (event) => {
+      if (!(event.target instanceof Element)) return;
+
+      const button = event.target.closest("[data-copy-code]");
+      if (!(button instanceof HTMLButtonElement)) return;
+
+      const block = button.closest("[data-code-block]");
+      const code = block?.querySelector("pre code")?.textContent ?? "";
+      const status = block?.querySelector("[data-copy-status]");
+      let copied = false;
+
+      try {
+        if (navigator.clipboard?.writeText) {
+          await navigator.clipboard.writeText(code);
+          copied = true;
+        }
+      } catch {
+        copied = false;
+      }
+
+      if (!copied) {
+        const textarea = document.createElement("textarea");
+        textarea.value = code;
+        textarea.setAttribute("readonly", "");
+        textarea.style.position = "fixed";
+        textarea.style.opacity = "0";
+        document.body.append(textarea);
+        textarea.select();
+        try {
+          copied = document.execCommand("copy");
+        } catch {
+          copied = false;
+        }
+        textarea.remove();
+      }
+
+      const message = copied ? "Copied" : "Copy failed";
+      button.setAttribute("aria-label", message);
+      button.setAttribute("title", message);
+      if (status) status.textContent = message;
+      button.querySelector("[data-copy-icon]")?.classList.toggle("hidden", copied);
+      button.querySelector("[data-copied-icon]")?.classList.toggle("hidden", !copied);
+
+      window.setTimeout(() => {
+        button.setAttribute("aria-label", "Copy code");
+        button.setAttribute("title", "Copy code");
+        if (status) status.textContent = "";
+        button.querySelector("[data-copy-icon]")?.classList.remove("hidden");
+        button.querySelector("[data-copied-icon]")?.classList.add("hidden");
+      }, 2000);
+    });
+  </script>
 </Layout>

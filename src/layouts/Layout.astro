@@ -9,12 +9,21 @@ interface Props {
   description?: string;
   image?: string;
   canonicalURL?: string;
+  ogType?: "website" | "article";
+  publishedAt?: string;
+  updatedAt?: string;
+  author?: string;
 }
 
 const {
   title,
   description = DATA.description,
+  image,
   canonicalURL = Astro.url.href,
+  ogType = "website",
+  publishedAt,
+  updatedAt,
+  author,
 } = Astro.props;
 
 const pageTitle = title
@@ -139,7 +148,7 @@ const { baseFontSize } = CONFIG.typography;
 
     <meta
       property="og:type"
-      content="website"
+      content={ogType}
     />
 
     <meta
@@ -167,6 +176,12 @@ const { baseFontSize } = CONFIG.typography;
       content={CONFIG.site.locale}
     />
 
+    {image && <meta property="og:image" content={new URL(image, CONFIG.site.url).href} />}
+    {ogType === "article" && publishedAt && <meta property="article:published_time" content={publishedAt} />}
+    {ogType === "article" && updatedAt && <meta property="article:modified_time" content={updatedAt} />}
+    {ogType === "article" && author && <meta name="author" content={author} />}
+    {ogType === "article" && author && <meta property="article:author" content={author} />}
+
     
 
     <!-- Twitter -->
@@ -185,6 +200,8 @@ const { baseFontSize } = CONFIG.typography;
       name="twitter:description"
       content={description}
     />
+
+    {image && <meta name="twitter:image" content={new URL(image, CONFIG.site.url).href} />}
 
   
   </head>
