@@ -1,4 +1,3 @@
-import BlurFade from "@/components/magicui/blur-fade";
 import { ProjectCard } from "@/components/project-card";
 import { DATA } from "@/data/resume";
 
@@ -12,8 +11,7 @@ export default function ProjectsSection() {
             SECTION HEADER
         ============================================================ */}
 
-        <BlurFade delay={BLUR_FADE_DELAY}>
-          <div className="flex flex-col gap-y-4">
+          <div className="home-reveal flex flex-col gap-y-4" style={{ "--reveal-delay": `${BLUR_FADE_DELAY}s` } as React.CSSProperties}>
             {/* Section label */}
 
             <div className="flex w-full items-center">
@@ -88,7 +86,6 @@ export default function ProjectsSection() {
               </p>
             </div>
           </div>
-        </BlurFade>
 
         {/* ============================================================
             PROJECT GRID
@@ -103,10 +100,10 @@ export default function ProjectsSection() {
           "
         >
           {DATA.projects.map((project, index) => (
-            <BlurFade
+            <div
               key={project.title}
-              delay={BLUR_FADE_DELAY * 2 + index * 0.06}
-              className="h-full"
+              className="home-reveal h-full"
+              style={{ "--reveal-delay": `${BLUR_FADE_DELAY * 2 + index * 0.06}s` } as React.CSSProperties}
             >
               <ProjectCard
                 index={index}
@@ -118,7 +115,7 @@ export default function ProjectsSection() {
                 href={project.href}
                 links={project.links}
               />
-            </BlurFade>
+            </div>
           ))}
         </div>
       </div>
