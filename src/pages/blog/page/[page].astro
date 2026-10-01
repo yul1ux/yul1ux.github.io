@@ -1,0 +1,27 @@
+---
+import BlogList from "@/components/BlogList.astro";
+import Layout from "@/layouts/Layout.astro";
+import { getBlogPages } from "@/lib/blog-pagination";
+
+export async function getStaticPaths() {
+  const pages = await getBlogPages();
+
+  return pages.slice(1).map((page) => ({
+    params: { page: String(page.pagination.page) },
+    props: page,
+  }));
+}
+
+const { items: posts, pagination, totalPosts } = Astro.props;
+---
+
+<Layout
+  title={`Blog - Page ${pagination.page}`}
+  description="Thoughts on software development, life, and more."
+>
+  <BlogList
+    posts={posts}
+    totalPosts={totalPosts}
+    pagination={pagination}
+  />
+</Layout>

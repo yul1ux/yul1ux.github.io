@@ -123,7 +123,7 @@ export const DATA = {
         name: "LinkedIn",
         url: "https://linkedin.com/in/",
         icon: Icons.linkedin,
-        navbar: true,
+        navbar: false,
       },
 
       email: {
