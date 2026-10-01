@@ -15,11 +15,9 @@ import EducationSection from "@/components/section/education-section";
 import {
   ArrowDown,
   ArrowUpRight,
-  Cloud,
-  Mail,
+  Cloud
 } from "lucide-react";
 
-import { Icons } from "@/components/icons";
 
 const BLUR_FADE_DELAY = 0.04;
 

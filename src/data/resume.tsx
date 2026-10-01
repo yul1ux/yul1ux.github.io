@@ -381,30 +381,4 @@ export const DATA = {
       video: "",
     },
   ],
-
-  /* ============================================================
-     PHOTOS
-  ============================================================ */
-
-  photos: [] as {
-    src: string;
-    alt: string;
-  }[],
-
-  /* ============================================================
-     HACKATHONS
-  ============================================================ */
-
-  hackathons: [] as {
-    title: string;
-    dates?: string;
-    location?: string;
-    description?: string;
-    image?: string;
-    links?: readonly {
-      title: string;
-      href: string;
-      icon: React.ReactNode;
-    }[];
-  }[],
 } as const;

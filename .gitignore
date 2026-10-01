@@ -1,7 +1,6 @@
 # misc
 .claude/
 .vscode/
-.wrangler/
 
 # build output
 dist/

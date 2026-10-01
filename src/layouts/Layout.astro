@@ -14,19 +14,12 @@ interface Props {
 const {
   title,
   description = DATA.description,
-  image,
   canonicalURL = Astro.url.href,
 } = Astro.props;
 
 const pageTitle = title
   ? CONFIG.seo.titleTemplate.replace("%s", title).replace("%n", DATA.name)
   : DATA.name;
-
-const ogImage = image
-  ? image.startsWith("http")
-    ? image
-    : `${CONFIG.site.url}${image}`
-  : `${CONFIG.site.url}${DATA.ogImage}`;
 
 const { light, dark, radius } = CONFIG.theme;
 const { baseFontSize } = CONFIG.typography;
@@ -174,10 +167,7 @@ const { baseFontSize } = CONFIG.typography;
       content={CONFIG.site.locale}
     />
 
-    <meta
-      property="og:image"
-      content={ogImage}
-    />
+    
 
     <!-- Twitter -->
 
@@ -196,10 +186,7 @@ const { baseFontSize } = CONFIG.typography;
       content={description}
     />
 
-    <meta
-      name="twitter:image"
-      content={ogImage}
-    />
+  
   </head>
 
   <body
