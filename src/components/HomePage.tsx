@@ -276,11 +276,11 @@ export default function HomePage() {
           left-1/2
           top-0
           -z-10
-          h-[450px]
-          w-[750px]
+          h-112.5
+          w-187.5
           -translate-x-1/2
           rounded-full
-          bg-blue-500/[0.045]
+          bg-blue-500/4.5
           blur-[120px]
         "
       />
@@ -295,9 +295,9 @@ export default function HomePage() {
           inset-0
           -z-10
           opacity-[0.02]
-          [background-image:linear-gradient(to_right,hsl(var(--foreground))_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--foreground))_1px,transparent_1px)]
-          [background-size:64px_64px]
-          [mask-image:linear-gradient(to_bottom,black,transparent_60%)]
+          bg-[linear-gradient(to_right,hsl(var(--foreground))_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--foreground))_1px,transparent_1px)]
+          bg-size-[64px_64px]
+          mask-[linear-gradient(to_bottom,black,transparent_60%)]
         "
       />
 
@@ -320,10 +320,10 @@ export default function HomePage() {
           className="
             pointer-events-none
             absolute
-            right-[-180px]
+            -right-45
             top-1/2
             -z-10
-            size-[500px]
+            size-125
             -translate-y-1/2
             rounded-full
             bg-blue-500/[0.035]
@@ -383,7 +383,7 @@ export default function HomePage() {
                     rounded-full
                     border
                     border-blue-500/15
-                    bg-blue-500/[0.045]
+                    bg-blue-500/4.5
                     px-3
                     py-1.5
                     text-[11px]
@@ -555,7 +555,7 @@ export default function HomePage() {
                 className="
                   relative
                   mx-auto
-                  h-[400px]
+                  h-100
                   w-full
                   max-w-[320px]
                 "
@@ -568,11 +568,11 @@ export default function HomePage() {
                     absolute
                     left-1/2
                     top-1/2
-                    size-[230px]
+                    size-57.5
                     -translate-x-1/2
                     -translate-y-1/2
                     rounded-full
-                    bg-blue-500/[0.06]
+                    bg-blue-500/6
                     blur-[80px]
                   "
                 />
@@ -585,7 +585,7 @@ export default function HomePage() {
                     absolute
                     left-1/2
                     top-[47%]
-                    size-[290px]
+                    size-72.5
                     -translate-x-1/2
                     -translate-y-1/2
                     rounded-full
@@ -603,7 +603,7 @@ export default function HomePage() {
                     absolute
                     left-1/2
                     top-[47%]
-                    size-[320px]
+                    size-80
                     -translate-x-1/2
                     -translate-y-1/2
                     rounded-full
@@ -620,7 +620,7 @@ export default function HomePage() {
                   alt={`${DATA.name} wizard illustration`}
                   className="
                     absolute
-                    bottom-[-10px]
+                    -bottom-2.5
                     left-1/2
                     z-10
                     w-[115%]
