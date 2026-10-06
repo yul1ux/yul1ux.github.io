@@ -164,12 +164,22 @@ export const FlickeringGrid: React.FC<FlickeringGridProps> = ({
 
     let animationFrameId: number
     let gridParams: ReturnType<typeof setupCanvas>
+    const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)")
 
     const updateCanvasSize = () => {
       const newWidth = width || container.clientWidth
       const newHeight = height || container.clientHeight
       setCanvasSize({ width: newWidth, height: newHeight })
       gridParams = setupCanvas(canvas, newWidth, newHeight)
+      drawGrid(
+        ctx,
+        canvas.width,
+        canvas.height,
+        gridParams.cols,
+        gridParams.rows,
+        gridParams.squares,
+        gridParams.dpr
+      )
     }
 
     updateCanvasSize()
@@ -194,6 +204,14 @@ export const FlickeringGrid: React.FC<FlickeringGridProps> = ({
       animationFrameId = requestAnimationFrame(animate)
     }
 
+    const handleMotionPreferenceChange = (event: MediaQueryListEvent) => {
+      cancelAnimationFrame(animationFrameId)
+      if (!event.matches && isInView) {
+        lastTime = 0
+        animationFrameId = requestAnimationFrame(animate)
+      }
+    }
+
     const resizeObserver = new ResizeObserver(() => {
       updateCanvasSize()
     })
@@ -208,13 +226,15 @@ export const FlickeringGrid: React.FC<FlickeringGridProps> = ({
     )
 
     intersectionObserver.observe(canvas)
+    motionPreference.addEventListener("change", handleMotionPreferenceChange)
 
-    if (isInView) {
+    if (isInView && !motionPreference.matches) {
       animationFrameId = requestAnimationFrame(animate)
     }
 
     return () => {
       cancelAnimationFrame(animationFrameId)
+      motionPreference.removeEventListener("change", handleMotionPreferenceChange)
       resizeObserver.disconnect()
       intersectionObserver.disconnect()
     }

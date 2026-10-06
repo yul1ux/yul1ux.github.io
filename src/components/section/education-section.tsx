@@ -3,8 +3,13 @@ import {
   BadgeCheck,
   GraduationCap,
 } from "lucide-react";
+import type { ImageMetadata } from "astro";
 
 import { DATA } from "@/data/resume";
+
+function logoSrc(logoUrl: string | ImageMetadata) {
+  return typeof logoUrl === "string" ? logoUrl : logoUrl.src;
+}
 
 export default function EducationSection() {
   return (
@@ -60,10 +65,13 @@ export default function EducationSection() {
               >
                 {item.logoUrl ? (
                   <img
-                    src={item.logoUrl}
+                    src={logoSrc(item.logoUrl)}
                     alt={`${item.school} logo`}
+                    width={28}
+                    height={28}
                     className="size-7 object-contain"
                     loading="lazy"
+                    decoding="async"
                   />
                 ) : (
                   <GraduationCap className="size-5 text-muted-foreground" />
@@ -174,10 +182,13 @@ export default function EducationSection() {
               >
                 {item.logoUrl ? (
                   <img
-                    src={item.logoUrl}
+                    src={logoSrc(item.logoUrl)}
                     alt={`${item.issuer} logo`}
+                    width={28}
+                    height={28}
                     className="size-7 object-contain"
                     loading="lazy"
+                    decoding="async"
                   />
                 ) : (
                   <BadgeCheck className="size-5 text-blue-500" />
@@ -301,7 +312,8 @@ export default function EducationSection() {
                     text-foreground
                     underline-offset-4
                     transition-colors
-                    hover:text-blue-500
+                    hover:text-blue-700
+                    dark:hover:text-blue-300
                     hover:underline
                   "
                 >

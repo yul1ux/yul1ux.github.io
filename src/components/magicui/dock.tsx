@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import { motion, type MotionValue, useMotionValue, useSpring, useTransform } from "motion/react";
+import { motion, type MotionValue, useMotionValue, useReducedMotion, useSpring, useTransform } from "motion/react";
 import { createContext, useContext, useRef, type ReactNode } from "react";
 
 interface DockProps {
@@ -48,12 +48,17 @@ const Dock = ({ className, children, magnification = DEFAULT_MAGNIFICATION, dist
 const DockIcon = ({ className, children }: DockIconProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const context = useContext(DockContext);
+  const prefersReducedMotion = useReducedMotion();
 
   if (!context) {
     throw new Error("DockIcon must be used within a Dock component");
   }
 
   const { mouseX, magnification, distance } = context;
+  const effectiveMagnification = prefersReducedMotion ? BASE_SIZE : magnification;
+  const effectiveIconMagnification = prefersReducedMotion
+    ? BASE_ICON_SIZE
+    : magnification * ICON_SIZE_RATIO;
 
   const distanceCalc = useTransform(mouseX, (val: number) => {
     const bounds = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 };
@@ -61,11 +66,11 @@ const DockIcon = ({ className, children }: DockIconProps) => {
   });
 
   const containerSize = useSpring(
-    useTransform(distanceCalc, [-distance, 0, distance], [BASE_SIZE, magnification, BASE_SIZE]),
+    useTransform(distanceCalc, [-distance, 0, distance], [BASE_SIZE, effectiveMagnification, BASE_SIZE]),
     SPRING
   );
   const iconSize = useSpring(
-    useTransform(distanceCalc, [-distance, 0, distance], [BASE_ICON_SIZE, magnification * ICON_SIZE_RATIO, BASE_ICON_SIZE]),
+    useTransform(distanceCalc, [-distance, 0, distance], [BASE_ICON_SIZE, effectiveIconMagnification, BASE_ICON_SIZE]),
     SPRING
   );
 

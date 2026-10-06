@@ -1,9 +1,18 @@
 ---
 export const prerender = true;
+import { getImage } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
 import HomePage from "@/components/HomePage.astro";
+import { DATA } from "@/data/resume";
+
+const ogImage = await getImage({
+  src: DATA.avatarUrl,
+  width: 800,
+  format: "jpg",
+  quality: 80,
+});
 ---
 
-<Layout>
+<Layout image={ogImage.src}>
   <HomePage />
 </Layout>

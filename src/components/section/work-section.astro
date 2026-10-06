@@ -1,0 +1,76 @@
+---
+import { Image } from "astro:assets";
+import { ChevronDown, ChevronRight } from "lucide-react";
+import { DATA } from "@/data/resume";
+---
+
+<div class="grid w-full gap-6">
+  {
+    DATA.work.map((work) => (
+      <details
+        name="work-experience"
+        class="group work-item grid w-full gap-2 border-b-0"
+      >
+        <summary class="flex cursor-pointer list-none items-center justify-between rounded-none p-0 text-left transition-colors hover:no-underline [&::-webkit-details-marker]:hidden">
+          <span class="flex w-full items-center justify-between gap-x-3 text-left">
+            <span class="flex min-w-0 flex-1 items-center gap-x-3">
+              <Image
+                src={work.logoUrl}
+                alt={work.company}
+                width={40}
+                height={40}
+                loading="lazy"
+                decoding="async"
+                class="size-8 flex-none overflow-hidden rounded-full border object-contain p-1 shadow ring-2 ring-border md:size-10"
+              />
+              <span class="flex min-w-0 flex-1 flex-col gap-0.5">
+                <span class="flex items-center gap-2 font-semibold leading-none">
+                  {work.company}
+                  <span class="relative inline-flex h-3.5 w-3.5 items-center">
+                    <ChevronRight className="absolute h-3.5 w-3.5 shrink-0 translate-x-0 stroke-2 text-muted-foreground opacity-0 transition-all duration-300 ease-out group-hover:translate-x-1 group-hover:opacity-100 group-open:translate-x-0 group-open:opacity-0" />
+                    <ChevronDown className="absolute h-3.5 w-3.5 shrink-0 rotate-0 stroke-2 text-muted-foreground opacity-0 transition-all duration-200 group-open:rotate-180 group-open:opacity-100" />
+                  </span>
+                </span>
+                <span class="font-sans text-sm text-muted-foreground">
+                  {work.title}
+                </span>
+              </span>
+            </span>
+            <span class="flex flex-none items-center gap-1 text-right text-xs tabular-nums text-muted-foreground">
+              <span>
+                {work.start} - {work.end ?? DATA.sections.work.presentLabel}
+              </span>
+            </span>
+          </span>
+        </summary>
+        <p class="work-desc ml-13 p-0 text-xs text-muted-foreground sm:text-sm">
+          {work.description}
+        </p>
+      </details>
+    ))
+  }
+</div>
+
+<style>
+  @keyframes work-open {
+    from {
+      opacity: 0;
+      transform: translateY(-4px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .work-item[open] .work-desc {
+    animation: work-open 0.2s ease-out;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .work-item[open] .work-desc {
+      animation: none;
+    }
+  }
+</style>

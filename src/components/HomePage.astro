@@ -1,12 +1,13 @@
 ---
+import { Picture } from "astro:assets";
 import {
   ArrowDown,
   ArrowUpRight,
   Cloud,
 } from "lucide-react";
 import EducationSection from "@/components/section/education-section";
-import ProjectsSection from "@/components/section/projects-section";
-import WorkSection from "@/components/section/work-section";
+import ProjectsSection from "@/components/section/projects-section.astro";
+import WorkSection from "@/components/section/work-section.astro";
 import FlickeringGrid from "@/components/magicui/flickering-grid";
 import { DATA } from "@/data/resume";
 
@@ -36,7 +37,7 @@ const sections = DATA.sections;
       <div class="grid items-center gap-8 lg:grid-cols-[1fr_300px] lg:gap-12">
         <div class="relative z-20 max-w-2xl">
           <div
-            class="home-reveal mb-4 inline-flex items-center gap-2 rounded-full border border-blue-500/15 bg-blue-500/4.5 px-3 py-1.5 text-[11px] font-medium uppercase tracking-[0.16em] text-blue-500 backdrop-blur-sm"
+            class="home-reveal mb-4 inline-flex items-center gap-2 rounded-full border border-blue-500/15 bg-blue-500/4.5 px-3 py-1.5 text-[11px] font-medium uppercase tracking-[0.16em] text-blue-700 backdrop-blur-sm dark:text-blue-300"
             style="--reveal-delay: 0.04s"
           >
             <Cloud className="size-3.5" />
@@ -99,10 +100,21 @@ const sections = DATA.sections;
               aria-hidden="true"
               class="absolute left-1/2 top-[47%] size-80 -translate-x-1/2 -translate-y-1/2 rounded-full border border-dashed border-border/25"
             ></div>
-            <img
+            <Picture
               src={DATA.avatarUrl}
               alt={`${DATA.name} wizard illustration`}
-              class="absolute -bottom-2.5 left-1/2 z-10 w-[115%] max-w-none -translate-x-1/2 object-contain drop-shadow-[0_25px_35px_rgba(0,0,0,0.3)]"
+              formats={["avif", "webp"]}
+              widths={[400, 800]}
+              sizes="(min-width: 1024px) 368px, 0px"
+              width={400}
+              loading="eager"
+              fetchpriority="high"
+              decoding="async"
+              pictureAttributes={{
+                class:
+                  "absolute -bottom-2.5 left-1/2 z-10 w-[115%] max-w-none -translate-x-1/2",
+              }}
+              class="h-auto w-full object-contain drop-shadow-[0_25px_35px_rgba(0,0,0,0.3)]"
             />
             <div
               aria-hidden="true"
@@ -114,7 +126,7 @@ const sections = DATA.sections;
 
       <a
         href="#about"
-        class="home-reveal mx-auto mt-8 flex w-fit flex-col items-center gap-1.5 text-[11px] uppercase tracking-[0.15em] text-muted-foreground/40 transition-colors hover:text-muted-foreground"
+        class="home-reveal mx-auto mt-8 flex w-fit flex-col items-center gap-1.5 text-[11px] uppercase tracking-[0.15em] text-muted-foreground transition-colors hover:text-muted-foreground"
         style="--reveal-delay: 0.20s"
       >
         <span>Scroll</span>
@@ -148,7 +160,7 @@ const sections = DATA.sections;
             <h2 class="text-2xl font-semibold tracking-tight sm:text-[1.65rem]">{sections.work.heading}</h2>
           </div>
           <div class="home-reveal" style="--reveal-delay: 0.24s">
-            <WorkSection client:load />
+            <WorkSection />
           </div>
         </div>
       </section>

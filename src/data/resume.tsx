@@ -13,6 +13,14 @@ import { Docker } from "@/components/ui/svgs/docker";
 import { Kubernetes } from "@/components/ui/svgs/kubernetes";
 import { AWS } from "@/components/ui/svgs/aws";
 
+import gandalf from "@/assets/gandalf.webp";
+import awsArchitecture from "@/assets/projects/aws-architecture.webp";
+import terraform from "@/assets/projects/terraform.webp";
+import ftthIsp from "@/assets/projects/ftth-isp.webp";
+import bash from "@/assets/projects/bash.webp";
+import mhn from "@/assets/logos/mhn.webp";
+import institute from "@/assets/logos/institute.webp";
+
 export const DATA = {
   /* ============================================================
      PROFILE
@@ -34,7 +42,7 @@ export const DATA = {
   summary:
     "I am a NOC Engineer with experience supporting FTTH ISP infrastructure and troubleshooting network operations. I am transitioning into cloud engineering by building hands-on projects with AWS, Terraform, Linux, Docker, and automation tools. I enjoy designing secure, scalable infrastructure and applying my networking background to modern cloud environments.",
 
-  avatarUrl: "/gandalf.png",
+  avatarUrl: gandalf,
 
   /* ============================================================
      SECTIONS
@@ -189,7 +197,7 @@ export const DATA = {
       badges: ["NOC Engineer"],
       location: "Myanmar",
       title: "Network Operations Center Engineer",
-      logoUrl: "/mhn.png",
+      logoUrl: mhn,
       start: "2025",
       end: undefined,
 
@@ -221,7 +229,7 @@ export const DATA = {
       school: "Government Technical Institute (GTI) - Pyin Oo Lwin",
       href: "",
       degree: "Diploma in Mechanical Engineering",
-      logoUrl: "/institute.png",
+      logoUrl: institute,
       start: "2018",
       end: "2020",
     },
@@ -295,7 +303,7 @@ export const DATA = {
 
       links: [],
 
-      image: "/aws-architecture.png",
+      image: awsArchitecture,
 
       video: "",
     },
@@ -322,7 +330,7 @@ export const DATA = {
 
       links: [],
 
-      image: "/terraform.png",
+      image: terraform,
 
       video: "",
     },
@@ -350,7 +358,7 @@ export const DATA = {
 
       links: [],
 
-      image: "/ftth-isp.png",
+      image: ftthIsp,
 
       video: "",
     },
@@ -376,7 +384,7 @@ export const DATA = {
 
       links: [],
 
-      image: "/bash.png",
+      image: bash,
 
       video: "",
     },
