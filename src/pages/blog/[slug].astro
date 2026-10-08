@@ -54,62 +54,75 @@ const jsonLd = JSON.stringify({
   updatedAt={updatedAt}
   author={author}
 >
-  <section id="blog" class="mx-auto w-full max-w-5xl px-5 sm:px-8 lg:px-10">
+  <section id="blog" class="mx-auto w-full max-w-5xl px-5 pb-20 pt-8 sm:px-8 sm:pt-12 lg:px-10">
     <script is:inline type="application/ld+json" set:html={jsonLd} />
-    <div class="flex justify-start gap-4 items-center">
+    <div class="mb-10">
       <a
         href="/blog/"
-        class="text-sm text-muted-foreground hover:text-foreground transition-colors border border-border rounded-lg px-2 py-1 inline-flex items-center gap-1 mb-6 group"
+        class="group inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4"
         aria-label="Back to Blog"
       >
         <ChevronLeft
-          className="size-3 group-hover:-translate-x-px transition-transform"
+          className="size-4 transition-transform group-hover:-translate-x-1"
         />
-        Back to Blog
+        All articles
       </a>
     </div>
-    <div class="flex flex-col gap-4">
-      <h1
-        class="title font-semibold text-3xl md:text-4xl tracking-tighter leading-tight"
-      >
+    <header class="mx-auto max-w-3xl">
+      <p class="mb-4 flex items-center gap-2 font-mono text-xs uppercase tracking-[0.12em] text-muted-foreground">
+        <span class="h-px w-7 bg-primary"></span>
+        Article
+      </p>
+      <h1 class="text-balance text-3xl font-semibold leading-tight tracking-tight sm:text-4xl md:text-5xl">
         {title}
       </h1>
-      <p class="text-sm text-muted-foreground">
+      
+      <div class="mt-7 flex flex-wrap items-center gap-x-4 gap-y-2 border-y border-border py-4 text-sm text-muted-foreground">
         <time datetime={publishedAt}>{formatDate(publishedAt)}</time>
-        {author && <span> · By {author}</span>}
-      </p>
-    </div>
-    <div class="my-6 flex w-full items-center">
-      <div
-        class="flex-1 h-px bg-border"
-        style="mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent); -webkit-mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent);"
-      >
+        {author && <span class="text-foreground">{author}</span>}
+        {updatedAt && updatedAt !== publishedAt && (
+          <span>Updated <time datetime={updatedAt}>{formatDate(updatedAt)}</time></span>
+        )}
       </div>
-    </div>
+    </header>
+
+    {image && (
+      <figure class="mx-auto my-9 w-full max-w-3xl overflow-hidden rounded-lg border border-border bg-muted sm:my-12">
+        <img
+          src={image}
+          alt={title}
+          fetchpriority="high"
+          class="block aspect-[16/9] w-full object-cover"
+        />
+      </figure>
+    )}
+
     <article
-      class="prose max-w-3xl text-pretty font-sans leading-relaxed text-muted-foreground dark:prose-invert"
+      class="article-content prose prose-base mx-auto max-w-3xl text-pretty font-sans leading-7 text-muted-foreground dark:prose-invert sm:prose-lg sm:leading-8"
     >
       <Content components={mdxComponents} />
     </article>
 
-    <nav class="mt-12 pt-8 max-w-2xl">
-      <div class="flex flex-col sm:flex-row justify-between gap-4">
+    <nav aria-label="More articles" class="mx-auto mt-16 max-w-3xl border-t border-border pt-8">
+      <p class="mb-5 font-mono text-xs uppercase tracking-[0.12em] text-muted-foreground">Continue reading</p>
+      <div class="grid gap-3 sm:grid-cols-2">
         {
           previousPost ? (
             <a
               href={`/blog/${previousPost.id}/`}
-              class="group flex-1 flex flex-col gap-1 p-4 rounded-lg border border-border hover:bg-accent/50 transition-colors"
+              rel="prev"
+              class="group flex min-h-24 flex-col justify-between gap-3 rounded-md border border-border p-4 transition-colors hover:bg-accent/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
             >
               <span class="flex items-center gap-1 text-xs text-muted-foreground">
                 <ChevronLeft className="size-3" />
-                Previous
+                Newer article
               </span>
-              <span class="text-sm font-medium group-hover:text-foreground transition-colors whitespace-normal wrap-break-word">
+              <span class="text-sm font-medium leading-5 text-foreground transition-colors group-hover:text-primary">
                 {previousPost.data.title}
               </span>
             </a>
           ) : (
-            <div class="hidden sm:block flex-1" />
+            <div class="hidden sm:block" />
           )
         }
 
@@ -117,22 +130,52 @@ const jsonLd = JSON.stringify({
           nextPost ? (
             <a
               href={`/blog/${nextPost.id}/`}
-              class="group flex-1 flex flex-col gap-1 p-4 rounded-lg border border-border hover:bg-accent/50 transition-colors text-right"
+              rel="next"
+              class="group flex min-h-24 flex-col justify-between gap-3 rounded-md border border-border p-4 text-right transition-colors hover:bg-accent/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
             >
               <span class="flex items-center justify-end gap-1 text-xs text-muted-foreground">
-                Next
+                Older article
                 <ChevronRight className="size-3" />
               </span>
-              <span class="text-sm font-medium group-hover:text-foreground transition-colors whitespace-normal wrap-break-word">
+              <span class="text-sm font-medium leading-5 text-foreground transition-colors group-hover:text-primary">
                 {nextPost.data.title}
               </span>
             </a>
           ) : (
-            <div class="hidden sm:block flex-1" />
+            <div class="hidden sm:block" />
           )
         }
       </div>
     </nav>
+    <style>
+      .article-content :global(h2) {
+        margin-top: 2.5em;
+      }
+
+      .article-content :global(h3) {
+        margin-top: 2em;
+      }
+
+      .article-content :global(p),
+      .article-content :global(ul),
+      .article-content :global(ol) {
+        margin-top: 1.25em;
+        margin-bottom: 1.25em;
+      }
+
+      .article-content :global(li + li) {
+        margin-top: 0.45em;
+      }
+
+      .article-content :global(pre) {
+        max-width: 100%;
+      }
+
+      .article-content :global(img),
+      .article-content :global(video) {
+        border-radius: 0.5rem;
+      }
+    </style>
   </section>
 
   <script is:inline>

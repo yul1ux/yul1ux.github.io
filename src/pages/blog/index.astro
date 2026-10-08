@@ -7,11 +7,9 @@ const [{ items: posts, pagination, totalPosts }] = await getBlogPages();
 ---
 
 <Layout title="Blog" description="Thoughts on software development, life, and more.">
-  <section id="blog" class="mx-auto w-full max-w-5xl px-5 sm:px-8 lg:px-10">
-    <BlogList
-      posts={posts}
-      totalPosts={totalPosts}
-      pagination={pagination}
-    />
-  </section>
+  <BlogList
+    posts={posts}
+    totalPosts={totalPosts}
+    pagination={pagination}
+  />
 </Layout>
