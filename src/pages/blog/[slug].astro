@@ -98,11 +98,13 @@ const jsonLd = JSON.stringify({
     )}
 
     <article
-      class="article-content prose prose-base mx-auto max-w-3xl text-pretty font-sans leading-7 text-muted-foreground dark:prose-invert sm:prose-lg sm:leading-8"
-    >
-      <Content components={mdxComponents} />
-    </article>
-
+  class="article-content prose prose-base mx-auto max-w-3xl
+         text-pretty font-sans text-foreground/90
+         leading-8 dark:prose-invert
+         sm:prose-lg sm:leading-8"
+>
+  <Content components={mdxComponents} />
+</article>
     <nav aria-label="More articles" class="mx-auto mt-16 max-w-3xl border-t border-border pt-8">
       <p class="mb-5 font-mono text-xs uppercase tracking-[0.12em] text-muted-foreground">Continue reading</p>
       <div class="grid gap-3 sm:grid-cols-2">
