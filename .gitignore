@@ -5,6 +5,7 @@
 # build output
 dist/
 
+.obsidian/
 # generated types
 .astro/
 worker-configuration.d.ts
