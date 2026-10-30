@@ -9,6 +9,7 @@ import remarkGfm from "remark-gfm";
 import rehypePrettyCode from "rehype-pretty-code";
 import { remarkCodeMeta } from "./src/lib/remark-code-meta.ts";
 
+
 /** @type {import("rehype-pretty-code").Options} */
 const prettyCodeOptions = {
   theme: {
@@ -44,4 +45,5 @@ export default defineConfig({
       ],
     }),
   },
+
 });
